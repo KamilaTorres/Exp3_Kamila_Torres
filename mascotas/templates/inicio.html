@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="icon" type="image/jfif" href="{% static 'img/patita.jfif' %}">
+    <title>Inicio</title>
+    <link href="{% static 'css/Estilo.css' %}" rel="stylesheet">
+    <link href="{% static 'css/estilos.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    
+      <div class="container-fluid">
+          <!--construimos carrusel-->
+          <div id="carousel1" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel1" data-slide-to="1"></li>
+              <li data-target="#carousel1" data-slide-to="2"></li>
+            </ol>
+            <!-- diapositivas -->
+            <div class="carousel-inner">
+              <div class="carousel-item active" style="text-align: center;"> 
+                <img src="{% static 'img/Hamaca-grande-de-macram-para-gato-columpio-colgante-de-macram-cesta-de-cama-para-perro-accesorios.jpg_Q90.jpg_.webp' %}" style="width:43%; height:auto;" alt="" aling="center">
+                  <div class="carousel-caption">
+                    <h3 style="color: black;"><Strong>Accesorios para gatos</Strong></h3>
+                    <p style="color: black;"></p>
+                  </div>
+              </div>
+              <div class="carousel-item" style="text-align: center;">
+                  <img src="{% static 'img/Juguete-el-ctrico-inteligente-para-gato-rompecabezas-interactivo-bola-de-peluche-de-elevaci-n-autom-tica.jpg_Q90.jpg_.webp' %}" style="max-width:43%; height:auto;" alt="">
+                  <div class="carousel-caption">
+                    <h3 style="color: black;"><Strong>Juguetes para gatos</Strong></h3>
+                    <p style="color: black;"></p>
+                  </div>
+              </div>
+              <div class="carousel-item" style="text-align: center;">
+                  <img src="{% static 'img/1366_2000 (3).jpeg' %}" style="max-width:43%; height:auto;" alt="">
+                  <div class="carousel-caption">
+                    <h3 style="color: rgb(255, 255, 255);"><Strong>Juguetes Para perros</Strong></h3>
+                    <p style="color: black;"></p>
+                  </div>
+              </div>
+            </div>
+            <!-- botones de desplazamiento a izquierda y derecha -->       
+            <a class="carousel-control-prev" href="#carousel1" data-slide="prev" style="filter:invert(100%);">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Anterior</span>
+            </a>
+
+            <a class="carousel-control-next" href="#carousel1" data-slide="next"style="filter:invert(100%);">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Siguiente</span>
+            </a>
+          </div>
+      
+
+        </div>
+      </div><!--cierre del carrusel-->
+      <br><br><br><br>
+    
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-1"></div>
+          <div class="col-lg-4">
+            <img class="img-fluid" src="{% static 'img/Home-Luxurious-Cat-Climb-Track-Modern-Wall-Mounted-Shelves-Multifunctional-Cat-Furniture.jpg' %}" alt="">
+          </div>
+          <div class="col-lg-1"></div>
+         <div class="col-lg-5" style="text-align: left;">
+          <Strong style="background-color: white;">¡Bienvenidos a Patitas Solidiarias! Esperamos que encuentre todo lo que este buscando. Aqui podra encontrar productos con una buena relacion entre calidad y precio, tenemos articulos para ayudar, facilitar y entretener el día a día de tu mascota.</Strong> 
+         </div> 
+         <div class="col-lg-1"></div>
+         <div class="col-lg-5" style="margin-left: 100px;">
+          <Strong style="background-color: white;">Queremos informarles que nosotras estamos muy pendientes y dedicadas al cuidado de todos lo animales por lo que tenemos el agrado de informar que parte del dinero recaudado por las ventas de los articulos de esta pagina web, sera destinado a organizaciones que cuiden a los animales callejeros dandoles un hogar.</Strong>
+         </div> 
+         <div class="col-lg-1"></div>
+          <div class="col-lg-4" style="margin-left: 40px;">
+            <img class="img-fluid" src="{% static 'img/2016-10-18_11-22-26_5_619.png' %}" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6" style="margin-right: 10px;">
+        
+        <h1 style="color:brown; background-color: black;"><Strong>Perritos que ayudo la fundacion</Strong></h1>
+        <div id="dog-image-container"></div>
+        
+        <button id="next-button">Siguiente</button>
+        <br><br>
+        <script src="{% static 'js/api_dogs.js' %}"></script>
+      </div>
+     
+    {% endblock %}
+</body>
+</html>
