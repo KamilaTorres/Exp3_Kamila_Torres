@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="icon" type="image/jfif" href="{% static 'img/patita.jfif' %}">
+    
+
+    <title>Formulario de contacto</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        min-height: 100vh;
+      }
+
+      .formulario-container {
+        display: grid;
+        grid-template-rows: 1fr auto; /* Ajuste de diseño para ubicar el footer al final */
+        min-height: 100vh;
+      }
+
+      .formulario {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        font-family: inherit;
+        resize: vertical;
+      }
+
+      button[type="submit"] {
+        display: block;
+        margin-top: 20px;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: #4CAF50;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+
+      .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      @media screen and (max-width: 600px) {
+        .formulario {
+          padding: 10px;
+        }
+      }
+      
+      body {
+        background-image: url("{% static 'img/fondo.jpeg' %}");
+        font-family: "Constantia";
+      }
+      strong {
+      display: inline-block;
+    }
+    </style>
+
+    <script src="{% static 'js/Reloj.js' %}"></script>
+    <link href="{% static 'css/Estilo.css' %}" rel="stylesheet">
+    
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm navbar-light bg-light" id="barraNav"> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+      <!-- logo -->
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'img/patita.jfif' %}" width="50px" height="50px">
+      </a>
+      
+      <!-- enlaces -->
+        <div class="collapse navbar-collapse justify-content-between" id="opciones">   
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'tarjetas' %}"><dom><Strong>Perros</Strong></dom></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'gatos' %}"><dom><Strong>Gatos</Strong></dom></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Vision' %}"><dom><Strong>Vision</Strong></dom></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Formulario' %}"><dom><Strong>Contacto</Strong></dom></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><dom>Bienvenid@ {{user.username}}</dom></a>
+          </li>
+        </ul>
+          {% else %}
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'registrar' %}">Registrarse</a>
+              </li>
+          </ul>
+          {% endif %}
+          <form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="¿Qué buscas?" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="btnBuscar">Buscar</button>
+          </form>
+          <div class="navbar-nav">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" id="userBookStop" class="nav-link">
+                    <img src="{% static 'img/Perfil.jpg' %}" alt="userBookStop" width="20px">Cerrar Sesión
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}" id="userBookStop" class="nav-link">
+                    <img src="{% static 'img/Perfil.jpg' %}" alt="userBookStop" width="20px">Iniciar sesión
+                </a>
+            {% endif%}
+        </div>
+        </div>
+    </nav> 
+    
+    <br><br>
+
+   
+
+    <div class="clockdate-wrapper">
+      <div id="clock" style="background-color: white; color: black;"></div>
+      <div id="date"></div>
+    </div>
+    <div class="text-center" style="text-align: center;background-color: chocolate; "><strong>Las preguntas serán respondidas de Lunes a Viernes entre las 08:00 A.M y las 5:00 P.M</strong></div>
+    <div class="formulario-container">
+      <div class="container">
+        <h1 class="text-center" style="background-color: antiquewhite;">Formulario de contacto</h1>
+        <form id="formulario-contacto" action="#" method="post" class="form-control" placeholder="Ingrese un Alias">
+          <div class="text-center">
+            <label for="nombre" style="background-color: antiquewhite;">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required minlength="3" >
+          </div>
+          <div class="text-center">
+            <label for="comuna" style="background-color: antiquewhite;">Comuna:</label>
+            <input type="text" id="comuna" name="comuna" required minlength="3" class="form-control" placeholder="Ingrese una comuna">
+            <div id="error-comuna" class="error"></div>
+          </div>
+          <div class="text-center">
+            <label for="celular" style="background-color: antiquewhite;">Número de celular:</label>
+            <input type="number" id="celular" name="celular" required minlength="9" class="form-control">
+            <div id="error-celular" class="error"></div>
+          </div>
+          <div class="text-center">
+            <label for="correo" style="background-color: antiquewhite;">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.(com|cl)$" placeholder="ThuBellaka@gmail.com">
+            <div id="error-correo" class="error"></div>
+          </div>
+          <div class="text-center">
+            <label for="mensaje" style="background-color: antiquewhite;">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+            <div id="error-mensaje" class="error"></div>
+          </div>
+          <button type="submit">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+
+    <footer style="background-color: black;" class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2">
+            <h4><strong style="color: aliceblue;">Redes Sociales</strong></h4>
+            <br><br>
+            <img src="{% static 'img/instagram.png' %}" width="40px" height="40px">
+            <strong style="color: crimson;">Instagram</strong>
+            <br><br>
+            <img src="{% static 'img/whatsapp.png' %}" width="40px" height="40px">
+            <strong style="color: darkgreen;">Whatsapp</strong> 
+            <br><br>
+            <img src="{% static 'img/facebook.png' %}" width="40px" height="40px">
+            <strong style="color: blue;">Facebook</strong>
+          </div>
+          <div class="col-lg-1">
+            <a href="{% url 'inicio' %}"><strong>Inicio</strong></a>
+          </div>
+          <div class="col-lg-1">
+            <a href="{% url 'tarjetas' %}"><strong>Perros</strong></a>
+          </div>
+          <div class="col-lg-1">
+            <a href="{% url 'gatos' %}"><strong>Gatos</strong></a>
+          </div>
+          <div class="col-lg-1">
+            <a href="{% url 'Vision' %}"><strong>Vision</strong></a>
+          </div>
+          <div class="col-lg-1">
+            <a href="{% url 'Formulario' %}"><strong>Contactanos</strong></a>
+          </div>
+          <div class="col-lg-4">
+            <p style="text-align: right; margin-top: 150px; color: brown;"> 
+              <img src="{% static 'img/patita.jfif' %}" width="40px" height="40px" style="float: right;">
+              <br><br>
+              <strong>@Derechos Reservados</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <script>
+    MuestraReloj('clock','date');
+  </script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
